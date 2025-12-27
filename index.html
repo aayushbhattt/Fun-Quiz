@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Image Quiz - Welcome!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="card"
+        style="max-width: 500px; margin: 4rem auto; text-align: center"
+      >
+        <div style="font-size: 4rem; margin-bottom: 1rem">🎯</div>
+        <h1 style="margin-bottom: 0.5rem">Image Quiz Challenge</h1>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem">
+          Test your knowledge with fun image-based questions!
+        </p>
+
+        <div id="errorMessage" class="alert alert-error hidden"></div>
+
+        <form id="startForm">
+          <div class="form-group">
+            <label class="form-label" for="uniqueId">Unique ID</label>
+            <input
+              type="text"
+              id="uniqueId"
+              class="form-input"
+              placeholder="Enter your unique ID"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="displayName">Display Name</label>
+            <input
+              type="text"
+              id="displayName"
+              class="form-input"
+              placeholder="Enter your name"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Start Quiz 🚀
+          </button>
+        </form>
+
+        <div
+          style="
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+          "
+        >
+          <p style="font-size: 0.9rem; color: var(--text-muted)">
+            Each correct answer =
+            <strong style="color: var(--primary-color)">10 points</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

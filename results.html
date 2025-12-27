@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Results - Leaderboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- User Score Card -->
+      <div class="card" style="max-width: 700px; margin: 2rem auto">
+        <div class="score-display">
+          <h1 style="margin-bottom: 1rem">🎉 Quiz Completed!</h1>
+          <p
+            style="
+              font-size: 1.2rem;
+              color: var(--text-dark);
+              margin-bottom: 1rem;
+            "
+          >
+            Great job, <strong id="displayNameResult"></strong>!
+          </p>
+          <p
+            id="userRank"
+            style="
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: var(--primary-color);
+              margin-bottom: 2rem;
+            "
+          >
+            Rank: #-
+          </p>
+
+          <div class="score-circle">
+            <div>
+              <div class="score-value" id="scoreValue">0</div>
+              <div style="color: var(--text-light); font-size: 0.9rem">
+                points
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem">
+            <button id="retakeBtn" class="btn btn-primary">
+              🔄 Take Quiz Again
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard Section -->
+      <div class="card" style="max-width: 700px; margin: 2rem auto">
+        <h2 style="text-align: center; margin-bottom: 2rem">
+          🏆 Final Leaderboard
+        </h2>
+        <div id="leaderboardList" class="leaderboard">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="results.js"></script>
+  </body>
+</html>

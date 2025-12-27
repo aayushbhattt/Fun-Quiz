@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Quiz Management</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Admin Header -->
+      <div class="admin-header">
+        <div>
+          <h2 style="margin: 0">🎯 Quiz Admin Dashboard</h2>
+          <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem">
+            Manage quiz questions and view statistics
+          </p>
+        </div>
+        <button id="logoutBtn" class="btn btn-danger btn-small">Logout</button>
+      </div>
+
+      <!-- Stats Cards -->
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+        "
+      >
+        <div class="card" style="text-align: center; padding: 1.5rem">
+          <div
+            style="
+              font-size: 2.5rem;
+              font-weight: 700;
+              color: var(--primary-color);
+            "
+            id="totalQuestions"
+          >
+            0
+          </div>
+          <div style="color: var(--text-muted); font-size: 0.9rem">
+            Total Questions
+          </div>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem">
+          <div
+            style="
+              font-size: 2.5rem;
+              font-weight: 700;
+              color: var(--success-color);
+            "
+            id="totalParticipants"
+          >
+            0
+          </div>
+          <div style="color: var(--text-muted); font-size: 0.9rem">
+            Participants
+          </div>
+        </div>
+        <div class="card" style="text-align: center; padding: 1.5rem">
+          <div
+            style="
+              font-size: 2.5rem;
+              font-weight: 700;
+              color: var(--accent-color);
+            "
+            id="avgScore"
+          >
+            0
+          </div>
+          <div style="color: var(--text-muted); font-size: 0.9rem">
+            Avg Score
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz Control Section -->
+      <div class="card" style="margin-bottom: 2rem">
+        <h3 style="margin-bottom: 1rem">🎮 Quiz Control</h3>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+          "
+        >
+          <div>
+            <p style="margin-bottom: 0.5rem; font-weight: 600">Quiz Status</p>
+            <div
+              id="quizStatus"
+              style="
+                padding: 0.75rem;
+                background: var(--bg-light);
+                border-radius: var(--radius-md);
+                text-align: center;
+                font-weight: 600;
+              "
+            >
+              Loading...
+            </div>
+          </div>
+          <div>
+            <p style="margin-bottom: 0.5rem; font-weight: 600">
+              Current Question
+            </p>
+            <div style="display: flex; gap: 0.5rem">
+              <select
+                id="currentQuestionSelect"
+                class="form-input"
+                style="flex: 1"
+              >
+                <option value="0">No Question Active</option>
+              </select>
+              <button id="setQuestionBtn" class="btn btn-primary btn-small">
+                Set
+              </button>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 1rem">
+          <button id="startQuizBtn" class="btn btn-success" style="flex: 1">
+            ▶️ Start Quiz
+          </button>
+          <button id="endQuizBtn" class="btn btn-danger" style="flex: 1">
+            🏁 End Quiz & Show Results
+          </button>
+        </div>
+      </div>
+
+      <!-- Add Question Button -->
+      <div style="margin-bottom: 2rem">
+        <button id="addQuestionBtn" class="btn btn-primary">
+          ➕ Add New Question
+        </button>
+      </div>
+
+      <!-- Questions List -->
+      <div id="questionsList" class="question-list">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- Add/Edit Question Modal -->
+    <div id="questionModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add New Question</h2>
+          <button class="modal-close" id="closeModal">&times;</button>
+        </div>
+
+        <form id="questionForm">
+          <!-- Image Selection Dropdown -->
+          <div class="form-group">
+            <label class="form-label">Question Image</label>
+            <input
+              type="text"
+              id="imageFilename"
+              class="form-input"
+              placeholder="Enter image filename (e.g., question1.jpg)"
+              required
+            />
+            <p
+              style="
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+              "
+            >
+              💡 Add images to the <strong>images/</strong> folder, then enter
+              the filename here
+            </p>
+            <div id="imagePreview" class="hidden" style="margin-top: 1rem">
+              <img
+                id="previewImg"
+                style="
+                  max-width: 100%;
+                  max-height: 300px;
+                  border-radius: var(--radius-md);
+                "
+                alt="Preview"
+              />
+            </div>
+          </div>
+
+          <!-- Question Text -->
+          <div class="form-group">
+            <label class="form-label" for="questionText">Question Text</label>
+            <input
+              type="text"
+              id="questionText"
+              class="form-input"
+              placeholder="What is shown in this image?"
+              required
+            />
+            <p
+              style="
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+              "
+            >
+              💡 This text will be shown above the image
+            </p>
+          </div>
+
+          <!-- Correct Answer -->
+          <div class="form-group">
+            <label class="form-label" for="correctAnswer">Correct Answer</label>
+            <input
+              type="text"
+              id="correctAnswer"
+              class="form-input"
+              placeholder="Enter the correct answer"
+              required
+            />
+            <p
+              style="
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+              "
+            >
+              💡 Answer matching is case-insensitive
+            </p>
+          </div>
+
+          <!-- Question Order -->
+          <div class="form-group">
+            <label class="form-label" for="questionOrder">Question Order</label>
+            <input
+              type="number"
+              id="questionOrder"
+              class="form-input"
+              placeholder="1, 2, 3..."
+              min="1"
+              required
+            />
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="flex gap-2">
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              id="saveQuestionBtn"
+            >
+              Save Question
+            </button>
+            <button type="button" class="btn btn-outline" id="cancelBtn">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+  </body>
+</html>

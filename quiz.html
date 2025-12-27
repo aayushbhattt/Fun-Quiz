@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz - Image Quiz Challenge</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container quiz-container">
+      <!-- Header -->
+      <div class="card" style="margin-bottom: 1.5rem; padding: 1.5rem">
+        <div class="flex-between">
+          <span style="font-weight: 600; color: var(--text-dark)">
+            Question <span id="currentQuestion">-</span>
+          </span>
+          <span style="font-weight: 600; color: var(--primary-color)">
+            👤 <span id="displayNameHeader"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Live Leaderboard -->
+      <div class="card" style="margin-bottom: 1.5rem">
+        <h3 style="margin-bottom: 1rem; text-align: center">
+          🏆 Live Leaderboard
+        </h3>
+        <div
+          id="leaderboardContainer"
+          style="max-height: 200px; overflow-y: auto"
+        >
+          <div id="leaderboardList" class="leaderboard">
+            <div class="spinner spinner-small"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div
+        id="loadingSpinner"
+        class="card"
+        style="text-align: center; padding: 3rem"
+      >
+        <div class="spinner"></div>
+        <p style="margin-top: 1rem; color: var(--text-muted)">
+          Loading quiz...
+        </p>
+      </div>
+
+      <!-- Waiting Screen -->
+      <div
+        id="waitingScreen"
+        class="card hidden"
+        style="text-align: center; padding: 3rem"
+      >
+        <div style="font-size: 4rem; margin-bottom: 1rem">⏳</div>
+        <h2 style="margin-bottom: 1rem">Please Wait</h2>
+        <p
+          id="waitingMessage"
+          style="font-size: 1.1rem; color: var(--text-muted)"
+        >
+          Waiting for the quiz to start...
+        </p>
+      </div>
+
+      <!-- Question Card -->
+      <div id="questionContent" class="question-card hidden">
+        <div class="question-number" id="questionNumber">Question 1</div>
+
+        <!-- Question Text -->
+        <div style="margin-bottom: 1.5rem">
+          <h3
+            id="questionText"
+            style="color: var(--text-dark); font-size: 1.3rem; line-height: 1.4"
+          >
+            What is shown in this image?
+          </h3>
+        </div>
+
+        <!-- Question Image -->
+        <img
+          id="questionImage"
+          class="question-image"
+          alt="Quiz question image"
+        />
+
+        <!-- Answer Input -->
+        <div class="form-group">
+          <label class="form-label" for="answerInput">Your Answer</label>
+          <input
+            type="text"
+            id="answerInput"
+            class="form-input"
+            placeholder="e.g., rahul sharma (lowercase, single space)"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submitBtn" class="btn btn-primary btn-block">
+          Submit Answer ✓
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="quiz.js"></script>
+  </body>
+</html>
